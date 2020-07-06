@@ -1,0 +1,46 @@
+{
+  "name": "instagroom.me",
+  "version": "0.9.0",
+  "description": "Mobile app for Mobile Groomers that makes client/customer tracking and appointments easy.",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "start_local": "node -r dotenv/config server.js",
+    "test": "npm run lint",
+    "lint": "eslint \"**/*.js\""
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/deawar/InstaGroom.me.git"
+  },
+  "keywords": [
+    "React",
+    "Native",
+    "Mobile"
+  ],
+  "author": "Dean Warren, Ankit Mudvari, Andrew Murray, Jonathan Kelley",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/deawar/InstaGroom.me/issues"
+  },
+  "homepage": "https://github.com/deawar/InstaGroom.me#readme",
+  "devDependencies": {
+    "eslint": "^7.3.1",
+    "eslint-config-airbnb": "^18.2.0",
+    "eslint-plugin-import": "^2.22.0",
+    "eslint-plugin-jsx-a11y": "^6.3.1",
+    "eslint-plugin-react": "^7.20.2",
+    "eslint-plugin-react-hooks": "^4.0.4"
+  },
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "connect-flash": "^0.1.1",
+    "express": "^4.17.1",
+    "express-validator": "^6.6.0",
+    "mongojs": "^3.1.0",
+    "mongoose": "^5.9.21",
+    "morgan": "^1.10.0",
+    "dotenv": "^8.2.0",
+    "path": "^0.12.7"
+  }
+}
