@@ -6,7 +6,7 @@ const mongojs = require('mongojs');
 const mongoose = require('mongoose');
 const logger = require('morgan');
 const path = require('path');
-const config = require('./config/database');
+// const config = require('./config/database');
 
 const PORT = process.env.PORT || 3000;
 const app = express();
@@ -15,7 +15,22 @@ app.use(logger('dev'));
 
 app.use(bodyParser.urlencoded({ extended: false }));
 
+app.use(expressValidator({
+  errorFormatter(param, msg, value) {
+    const namespace = param.split('.');
+    const root = namespace.shift();
+    let formParam = root;
 
+    while (namespace.length) {
+      formParam += `[${namespace.shift()}]`;
+    }
+    return {
+      param: formParam,
+      msg,
+      value,
+    };
+  },
+}));
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
