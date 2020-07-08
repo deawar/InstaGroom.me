@@ -15,22 +15,22 @@ app.use(logger('dev'));
 
 app.use(bodyParser.urlencoded({ extended: false }));
 
-app.use(expressValidator({
-  errorFormatter(param, msg, value) {
-    const namespace = param.split('.');
-    const root = namespace.shift();
-    let formParam = root;
+// app.use(expressValidator({
+//   errorFormatter(param, msg, value) {
+//     const namespace = param.split('.');
+//     const root = namespace.shift();
+//     let formParam = root;
 
-    while (namespace.length) {
-      formParam += `[${namespace.shift()}]`;
-    }
-    return {
-      param: formParam,
-      msg,
-      value,
-    };
-  },
-}));
+//     while (namespace.length) {
+//       formParam += `[${namespace.shift()}]`;
+//     }
+//     return {
+//       param: formParam,
+//       msg,
+//       value,
+//     };
+//   },
+// }));
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
@@ -59,6 +59,11 @@ app.use('/posts', customers);
 app.get('/', (req, res) => {
   console.log('primary route /');
   res.sendFile(path.join(`${__dirname}./public/index.html`));
+});
+
+app.get('/hey', (req, res) => {
+  console.log('Check API Route [Hey}');
+  res.send('Ho!');
 });
 
 app.post('/submit', (req, res) => {
