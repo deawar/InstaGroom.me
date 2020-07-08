@@ -4,7 +4,6 @@ const router = express.Router();
 
 const Customer = require('../models/customers');
 
-
 router.post('/new', (req, res) => {
   req.assert('customer', 'Customer must be set').notEmpty();
   req.assert('pet', 'Pet must have content').notEmpty();
