@@ -1,0 +1,44 @@
+{
+	"info": {
+		"_postman_id": "a621bb54-256b-462e-9371-82e14fec24fc",
+		"name": "PetGroomers",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Groomer_Signup",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"firstName\": \"Ankit\",\n\t\"lastName\": \"Mudvari\",\n\t\"street\": \"3100 Windy Hill Rd\",\n\t\"city\": \"Atlanta\",\n\t\"state\": \"GA\",\n\t\"zip\": \"30029\",\n\t\"phone\": \"404-123-4569\",\n\t\"email\": \"groomeruser1@gmail.com\",\n\t\"password\": \"helloworld\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/signup",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"signup"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}
