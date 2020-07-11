@@ -3,7 +3,6 @@
   "version": "0.9.0",
   "description": "Mobile app for Mobile Groomers that makes client/customer tracking and appointments easy.",
   "main": "server.js",
-  
   "scripts": {
     "start": "node server.js",
     "start_local": "node -r dotenv/config server.js",
