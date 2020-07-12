@@ -8,7 +8,7 @@ router.get('/', (req, res) => {
 });
 
 router.get('/find', (req, res) => {
-  res.sendFile(path.join(`${__dirname}./public/index.html`));
+  res.sendFile(path.join(`${__dirname}./public/customer.html`));
 });
 
 module.exports = router;
