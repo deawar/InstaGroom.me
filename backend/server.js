@@ -1,11 +1,11 @@
 require('dotenv').config();
 const express = require('express');
 const bodyParser = require('body-parser');
-const expressValidator = require('express-validator');
-const mongojs = require('mongojs');
+// const expressValidator = require('express-validator');
+// const mongojs = require('mongojs');
 const mongoose = require('mongoose');
 const logger = require('morgan');
-const path = require('path');
+// const path = require('path');
 // const { mongoURL } = require('./config/database');
 
 // Temporary defining MongoDB cloud URL

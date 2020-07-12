@@ -1,5 +1,6 @@
+/* eslint-disable consistent-return */
 const jwt = require('jsonwebtoken');
-const mongoose = require('mongoose');
+// const mongoose = require('mongoose');
 const db = require('../models');
 
 module.exports = (req, res, next) => {

@@ -1,6 +1,6 @@
 const router = require('express').Router();
 const path = require('path');
-const authToken = require('../config/authToken');
+// const authToken = require('../config/authToken');
 
 router.get('/', (req, res) => {
   console.log('primary route /');
