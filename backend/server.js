@@ -13,7 +13,7 @@ const MONGODB_URI = 'mongodb+srv://petGroomerAtlanta:petGroomerAtlanta@cluster0.
 // const config = require('./config/database');
 
 // Defining Port
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 3001;
 const app = express();
 
 // Middleware
