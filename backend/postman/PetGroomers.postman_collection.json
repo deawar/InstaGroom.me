@@ -13,12 +13,13 @@
 					{
 						"key": "Content-Type",
 						"value": "application/json",
-						"type": "text"
+						"type": "text",
+						"disabled": true
 					}
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n\t\"firstName\": \"Ankit\",\n\t\"lastName\": \"Mudvari\",\n\t\"street\": \"3100 Windy Hill Rd\",\n\t\"city\": \"Atlanta\",\n\t\"state\": \"GA\",\n\t\"zip\": \"30029\",\n\t\"phone\": \"404-123-4569\",\n\t\"email\": \"groomeruser1@gmail.com\",\n\t\"password\": \"helloworld\"\n}",
+					"raw": "{\n\t\"firstName\": \"Luis\",\n\t\"lastName\": \"Parez\",\n\t\"street\": \"2999 Windy Hill Rd\",\n\t\"city\": \"Atlanta\",\n\t\"state\": \"GA\",\n\t\"zip\": \"30029\",\n\t\"phone\": \"404-321-5549\",\n\t\"email\": \"newgroomer1@gmail.com\",\n\t\"password\": \"helloworld\"\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -26,16 +27,82 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost:3000/signup",
+					"raw": "http://localhost:3001/signup",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
-					"port": "3000",
+					"port": "3001",
 					"path": [
 						"signup"
 					]
 				}
+			},
+			"response": []
+		},
+		{
+			"name": "Auth using Token",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJncm9vbWVySWQiOiI1ZjBhOTA4MjE4NjQ0YTJjNTNkOTVkZWMiLCJpYXQiOjE1OTQ1Mjc4NzR9.XvJQ9YI7H8eXDzGw4VHC1zB8obwJzrxTLO7fcI_qgJA",
+						"type": "text"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:3001/hey",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3001",
+					"path": [
+						"hey"
+					]
+				},
+				"description": "Do not forget to input your usertoken"
+			},
+			"response": []
+		},
+		{
+			"name": "Groomer_SignIn",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"email\":\"groomer01@gmail.com\",\n\t\"password\":\"helloworld001\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3001/signin",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3001",
+					"path": [
+						"signin"
+					]
+				},
+				"description": "Providing valid email and password should send back a token in response"
 			},
 			"response": []
 		}

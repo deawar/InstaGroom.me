@@ -55,7 +55,7 @@ const GroomerSchema = new Schema({
 // Hashing password if modified or before creating user
 GroomerSchema.pre('save', function (next) {
   const groomerUser = this;
-  console.log(groomerUser);
+  // console.log(groomerUser);
   // only hash the password if it has been modified (or is new)
   if (!groomerUser.isModified('password')) return next();
   // generate a salt
@@ -68,7 +68,7 @@ GroomerSchema.pre('save', function (next) {
       }
       // override the cleartext password with the hashed one
       groomerUser.password = hash;
-      console.log(groomerUser.password);
+      // console.log(groomerUser.password);
       return next();
     });
   });
