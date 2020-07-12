@@ -9,7 +9,8 @@ const path = require('path');
 // const { mongoURL } = require('./config/database');
 
 // Temporary defining MongoDB cloud URL
-const MONGODB_URI = 'mongodb+srv://petGroomerAtlanta:petGroomerAtlanta@cluster0.lx9ca.mongodb.net/petgroomer?retryWrites=true&w=majority';
+// const MONGODB_URI = 'mongodb+srv://petGroomerAtlanta:petGroomerAtlanta@cluster0.lx9ca.mongodb.net/petgroomer?retryWrites=true&w=majority';
+const { MONGODB_URI } = process.env;
 // const config = require('./config/database');
 
 // Defining Port
