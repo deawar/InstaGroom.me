@@ -1,3 +1,7 @@
+#Postman Collection
+#postman
+#*.postman_collection.json
+
 # Logs
 logs
 *.log
