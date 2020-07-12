@@ -15,7 +15,7 @@ module.exports = (req, res, next) => {
   const token = authorization.replace('Bearer ', '');
   jwt.verify(token, process.env.JWTKEY, async (error, payload) => {
     if (error) {
-      return res.status(401).send('Invlid Token Error');
+      return res.status(401).send('Invalid Token Error');
     }
     const { groomerId } = payload;
     const groomer = await db.Groomer.findById(groomerId);

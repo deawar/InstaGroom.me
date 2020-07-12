@@ -4,6 +4,7 @@ const jwt = require('jsonwebtoken');
 const db = require('../models');
 const authToken = require('../config/authToken');
 
+// Signup Route
 router.post('/signup', async (req, res) => {
   //   console.log(req.body);
   const {
@@ -19,7 +20,7 @@ router.post('/signup', async (req, res) => {
   } = req.body;
 
   try {
-    const groomer = new db.Groomer({
+    const groomerUser = new db.Groomer({
       firstName,
       lastName,
       street,
@@ -30,8 +31,8 @@ router.post('/signup', async (req, res) => {
       email,
       password,
     });
-    await groomer.save();
-    const token = jwt.sign({ groomerId: groomer._id }, process.env.JWTKEY);
+    await groomerUser.save();
+    const token = jwt.sign({ groomerId: groomerUser._id }, process.env.JWTKEY);
     return res.send({ token });
   } catch (err) {
     console.error(err);
@@ -39,10 +40,31 @@ router.post('/signup', async (req, res) => {
   }
 });
 
+// Verify Signed in Route
 // This route is to retrive the email id or any other info of user by passing token..
 // This is to verify we can get email of user only when valid token is sent..
 router.get('/verify', authToken, (req, res) => {
-  res.send(`User has been verified, your email address is ${req.groomer.email}`);
+  res.send(
+    `User has been verified, your email address is ${req.groomer.email}`,
+  );
 });
 
+// Signin Route
+router.post('/signin', async (req, res) => {
+  const { email, password } = req.body;
+  if (!email || !password) {
+    return res.status(422).send('Please provide email and password to sign in');
+  }
+  const groomerUser = await db.Groomer.findOne({ email });
+  if (!groomerUser) {
+    return res.status(422).send('Invalid email or password');
+  }
+  try {
+    await groomerUser.comparePassword(password);
+    const token = jwt.sign({ groomerId: groomerUser._id }, process.env.JWTKEY);
+    return res.send({ token });
+  } catch (err) {
+    return res.status(422).send('Invalid email or password');
+  }
+});
 module.exports = router;

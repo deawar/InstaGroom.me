@@ -1,5 +1,6 @@
 const router = require('express').Router();
 const path = require('path');
+const authToken = require('../config/authToken');
 
 router.get('/', (req, res) => {
   console.log('primary route /');
@@ -7,7 +8,7 @@ router.get('/', (req, res) => {
 });
 
 router.get('/find', (req, res) => {
-  res.sendFile(path.join(`${__dirname}./public/customer.html`));
+  res.sendFile(path.join(`${__dirname}./public/index.html`));
 });
 
 module.exports = router;
