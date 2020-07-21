@@ -3,12 +3,16 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 const logger = require('morgan');
+const HTMLRoutes = require('./routes/htmlRoutes');
+const CustomerRoutes = require('./routes/customerRoutes');
+const AuthRoutes = require('./routes/authRoutes');
+
 
 // MongoDB cloud URL
 const { MONGODB_URI } = process.env;
 
 // Defining Port
-const PORT = process.env.PORT || 3001;
+const PORT = process.env.PORT || 3006;
 const app = express();
 
 // Middleware
@@ -22,6 +26,7 @@ app.use(express.static('public'));
 
 app.use(bodyParser.json());
 
+// Connection to mongoose
 mongoose.connect(MONGODB_URI, {
   // All these to get rid of Mongoose warnings
   useNewUrlParser: true,
@@ -37,15 +42,11 @@ mongoose.connection.on('error', (error) => {
 });
 
 // Defining Routes
-app.use(require('./routes/htmlRoutes'));
-app.use(require('./routes/apiRoutes'));
-app.use(require('./routes/authRoutes'));
+app.use(HTMLRoutes);
+app.use('/api', CustomerRoutes);
+app.use('/api', AuthRoutes);
 
-// const customers = require('./routes/post');
-// const authToken = require('./config/authToken');
-
-// app.use('/posts', customers);
-
+// Listening to PORT
 app.listen(PORT, () => {
   console.log(`==> 🌎 App running on http://localhost:${PORT}`);
 });

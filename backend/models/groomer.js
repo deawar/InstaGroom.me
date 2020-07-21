@@ -1,3 +1,4 @@
+/* eslint-disable func-names */
 /* eslint-disable consistent-return */
 const mongoose = require('mongoose');
 const bcrypt = require('bcrypt');
@@ -7,30 +8,37 @@ const { Schema } = mongoose;
 const GroomerSchema = new Schema({
   firstName: {
     type: String,
+    trim: true,
     required: true,
   },
   lastName: {
     type: String,
+    trim: true,
     required: true,
   },
   street: {
     type: String,
+    trim: true,
     required: true,
   },
   city: {
     type: String,
+    trim: true,
     required: true,
   },
   state: {
     type: String,
+    trim: true,
     required: true,
   },
   zip: {
     type: String,
+    trim: true,
     required: true,
   },
   phone: {
     type: String,
+    trim: true,
     validate: {
       validator(v) {
         return /\d{3}-\d{3}-\d{4}/.test(v);
@@ -41,12 +49,20 @@ const GroomerSchema = new Schema({
   },
   email: {
     type: String,
+    trim: true,
     unique: true,
     required: true,
     lowercase: true,
+    validate: {
+      validator(v) {
+        return /^\S+@\S+\.\S+$/.test(v);
+      },
+      message: (props) => `${props.value} is not a valid phone number!`,
+    },
   },
   password: {
     type: String,
+    trim: true,
     required: true,
   },
 });

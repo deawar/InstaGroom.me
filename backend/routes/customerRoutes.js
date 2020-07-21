@@ -7,4 +7,6 @@ router.get('/hey', authToken, (req, res) => {
   res.send('Ho!');
 });
 
+// Get All User
+
 module.exports = router;
