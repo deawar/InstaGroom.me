@@ -70,7 +70,7 @@ mongoose.connection.on('error', (error) => {
 
 // Defining Routes
 app.use(require('./routes/htmlRoutes'));
-app.use(require('./routes/apiRoutes'));
+// app.use(require('./routes/apiRoutes'));
 app.use(require('./routes/authRoutes'));
 
 const customers = require('./routes/post');
