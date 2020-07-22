@@ -1,6 +1,5 @@
 /* eslint-disable consistent-return */
 const jwt = require('jsonwebtoken');
-// const mongoose = require('mongoose');
 const db = require('../models');
 
 module.exports = (req, res, next) => {
@@ -9,19 +8,26 @@ module.exports = (req, res, next) => {
 // console.log(req.headers);
   const { authorization } = req.headers;
   if (!authorization) {
-    return res.status(401).send('Unable to authorize user');
+    return res.status(401).json({
+      error: true,
+      data: null,
+      message: 'Unable to authorize user',
+    });
   }
   // If authorization token is available
   // First remove Bearer from the authorization token header
   const token = authorization.replace('Bearer ', '');
   jwt.verify(token, process.env.JWTKEY, async (error, payload) => {
     if (error) {
-      return res.status(401).send('Invalid Token Error');
+      return res.status(401).json({
+        error: true,
+        data: null,
+        message: 'Unable to authorize user',
+      });
     }
     const { groomerId } = payload;
     const groomer = await db.Groomer.findById(groomerId);
     req.groomer = groomer;
-    // console.log(groomer);
     next();
   });
 };

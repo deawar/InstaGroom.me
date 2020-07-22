@@ -3,63 +3,66 @@ const mongoose = require('mongoose');
 const { Schema } = mongoose;
 
 const CustomerSchema = new Schema({
-  // customer: {
   firstName: {
     type: String,
-    required: true,
+    trim: true,
+    required: 'Please enter customer first name',
   },
   lastName: {
     type: String,
-    required: true,
+    trim: true,
+    required: 'Please enter customer last name',
   },
-  address: {
+  street: {
     type: String,
-    required: true,
-  },
-  address2: {
-    type: String,
-    required: false,
+    trim: true,
+    required: 'Please enter street for customer',
   },
   city: {
     type: String,
-    required: true,
+    trim: true,
+    required: 'Please enter a city',
   },
   state: {
     type: String,
-    required: true,
+    trim: true,
+    required: 'Please enter a state',
   },
   zip: {
     type: String,
-    required: true,
+    trim: true,
+    required: 'Please enter a zip code',
   },
   phone1: {
     type: String,
+    trim: true,
     validate: {
       validator(v) {
         return /\d{3}-\d{3}-\d{4}/.test(v);
       },
       message: (props) => `${props.value} is not a valid phone number!`,
     },
-    required: [true, 'User phone number required'],
+    required: 'User phone number required',
   },
   phone2: {
     type: String,
-    validate: {
-      validator(v) {
-        return /\d{3}-\d{3}-\d{4}/.test(v);
-      },
-      message: (props) => `${props.value} is not a valid phone number!`,
-    },
-    required: [true, 'User phone number required'],
+    trim: true,
   },
   email1: {
     type: String,
-    required: true,
+    trim: true,
+    required: 'Please enter an email address',
     lowercase: true,
+    validate: {
+      validator(v) {
+        return /^\S+@\S+\.\S+$/.test(v);
+      },
+      message: (props) => `${props.value} is not a valid email!`,
+    },
   },
   email2: {
     type: String,
-    required: true,
+    trim: true,
     lowercase: true,
   },
   numberOfPets: {
@@ -67,18 +70,33 @@ const CustomerSchema = new Schema({
     type: Number,
     required: true,
   },
-  typeOfPets: {
-    type: String,
-    required: true,
-    petName: {
-      type: String,
-      age: Number,
-      breed: String,
-      medicalIssues: String,
+  petDetail: [
+    {
+      petName: {
+        type: String,
+        trim: true,
+        required: 'Please enter Pets name',
+      },
+      age: {
+        type: Number,
+      },
+      gender: {
+        type: String,
+        trim: true,
+      },
+      breed: {
+        type: String,
+        trim: true,
+      },
+      medicalCondition: {
+        type: String,
+      },
     },
+  ],
+  date_created: {
+    type: Date,
+    default: () => Date().now,
   },
-
-  // },
 });
 
 module.exports = mongoose.model('Customer', CustomerSchema);
