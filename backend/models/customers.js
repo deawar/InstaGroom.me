@@ -47,12 +47,6 @@ const CustomerSchema = new Schema({
   phone2: {
     type: String,
     trim: true,
-    validate: {
-      validator(v) {
-        return /\d{3}-\d{3}-\d{4}/.test(v);
-      },
-      message: (props) => `${props.value} is not a valid phone number!`,
-    },
   },
   email1: {
     type: String,
@@ -63,19 +57,13 @@ const CustomerSchema = new Schema({
       validator(v) {
         return /^\S+@\S+\.\S+$/.test(v);
       },
-      message: (props) => `${props.value} is not a valid phone number!`,
+      message: (props) => `${props.value} is not a valid email!`,
     },
   },
   email2: {
     type: String,
     trim: true,
     lowercase: true,
-    validate: {
-      validator(v) {
-        return /^\S+@\S+\.\S+$/.test(v);
-      },
-      message: (props) => `${props.value} is not a valid phone number!`,
-    },
   },
   numberOfPets: {
     // this section could be a separate schema type such as PetSchema
@@ -91,6 +79,10 @@ const CustomerSchema = new Schema({
       },
       age: {
         type: Number,
+      },
+      gender: {
+        type: String,
+        trim: true,
       },
       breed: {
         type: String,
