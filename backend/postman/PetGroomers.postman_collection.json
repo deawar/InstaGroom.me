@@ -19,7 +19,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n\t\"firstName\": \"Luis\",\n\t\"lastName\": \"Parez\",\n\t\"street\": \"2999 Windy Hill Rd\",\n\t\"city\": \"Atlanta\",\n\t\"state\": \"GA\",\n\t\"zip\": \"30029\",\n\t\"phone\": \"404-321-5549\",\n\t\"email\": \"newgroomer1@gmail.com\",\n\t\"password\": \"helloworld\"\n}",
+					"raw": "{\n\t\"firstName\": \"User2\",\n\t\"lastName\": \"Test2\",\n\t\"street\": \"1235 Winding River Rd\",\n\t\"city\": \"Atlanta\",\n\t\"state\": \"GA\",\n\t\"zip\": \"30035\",\n\t\"phone\": \"404-798-9873\",\n\t\"email\": \"groomer03@gmail.com\",\n\t\"password\": \"helloworld001\"\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -27,13 +27,14 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost:3001/signup",
+					"raw": "http://localhost:3006/api/signup",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
-					"port": "3001",
+					"port": "3006",
 					"path": [
+						"api",
 						"signup"
 					]
 				}
@@ -47,24 +48,25 @@
 				"header": [
 					{
 						"key": "Authorization",
-						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJncm9vbWVySWQiOiI1ZjBhOTA4MjE4NjQ0YTJjNTNkOTVkZWMiLCJpYXQiOjE1OTQ1Mjc4NzR9.XvJQ9YI7H8eXDzGw4VHC1zB8obwJzrxTLO7fcI_qgJA",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJncm9vbWVySWQiOiI1ZjBiNDVjNDE3YWM4YTQyNzdhYzM4NGIiLCJpYXQiOjE1OTQ1NzQyNzd9.EKXe8_RM5qj8uScbF2xeX3OO5YfucmefJpH3z2tvnbs",
 						"type": "text"
 					},
 					{
 						"key": "Content-Type",
-						"value": "application/json",
+						"value": "",
 						"type": "text"
 					}
 				],
 				"url": {
-					"raw": "http://localhost:3001/hey",
+					"raw": "http://localhost:3006/api/Verify",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
-					"port": "3001",
+					"port": "3006",
 					"path": [
-						"hey"
+						"api",
+						"Verify"
 					]
 				},
 				"description": "Do not forget to input your usertoken"
@@ -84,7 +86,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n\t\"email\":\"groomer01@gmail.com\",\n\t\"password\":\"helloworld001\"\n}",
+					"raw": "{\n\t\"email\": \"groomer03@gmail.com\",\n\t\"password\": \"helloworld001\"\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -92,17 +94,113 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost:3001/signin",
+					"raw": "http://localhost:3006/api/signin",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
-					"port": "3001",
+					"port": "3006",
 					"path": [
+						"api",
 						"signin"
 					]
 				},
 				"description": "Providing valid email and password should send back a token in response"
+			},
+			"response": []
+		},
+		{
+			"name": "Add Customer",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "  {\n  \"firstName\": \"Customer1\",\n  \"lastName\": \"Test1\",\n  \"street\": \"123 May Lane\",\n  \"city\": \"Atlanta\",\n  \"state\": \"GA\",\n  \"zip\":\"30029\",\n  \"phone1\": \"404-883-7593\",\n  \"phone2\": \"\",\n  \"email1\":\"customer1_test@gmail.com\",\n  \"email2\": \"\",\n  \"numberOfPets\": 1,\n  \"petDetail\": [{\n      \"petName\": \"Tiger\",\n      \"age\": 4,\n      \"gender\": \"male\",\n      \"breed\": \"Dobermann\",\n      \"medicalCondition\": \"Allergic to Soap\"\n    }],\n    \"date_created\":\"2020-07-22\"\n  }",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3006/api/addCustomer",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3006",
+					"path": [
+						"api",
+						"addCustomer"
+					]
+				},
+				"description": "Adds customer to db"
+			},
+			"response": []
+		},
+		{
+			"name": "FindAllCustomer",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJncm9vbWVySWQiOiI1ZjBiNDVjNDE3YWM4YTQyNzdhYzM4NGIiLCJpYXQiOjE1OTQ1NzQyNzd9.EKXe8_RM5qj8uScbF2xeX3OO5YfucmefJpH3z2tvnbs",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3006/api/customer",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3006",
+					"path": [
+						"api",
+						"customer"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "FindCustomerbyId",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJncm9vbWVySWQiOiI1ZjBiNDVjNDE3YWM4YTQyNzdhYzM4NGIiLCJpYXQiOjE1OTQ1NzQyNzd9.EKXe8_RM5qj8uScbF2xeX3OO5YfucmefJpH3z2tvnbs",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:3006/api/customer/5f1806be7b27f3c2a1ba0818",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3006",
+					"path": [
+						"api",
+						"customer",
+						"5f1806be7b27f3c2a1ba0818"
+					]
+				}
 			},
 			"response": []
 		}

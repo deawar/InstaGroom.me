@@ -88,6 +88,10 @@ const CustomerSchema = new Schema({
         type: String,
         trim: true,
       },
+      weight: {
+        type: Number,
+        trim: true,
+      },
       medicalCondition: {
         type: String,
       },
