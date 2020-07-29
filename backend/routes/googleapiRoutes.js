@@ -3,20 +3,20 @@ const axios = require('axios');
 
 require('dotenv').config();
 
-const { GOOGLE_URI } = process.env;
-const key = process.env.GOOGLE_API_KEY;
+const { REVERSE_GEOCODE_URI } = process.env;
+const { GOOGLE_API_KEY } = process.env;
 
 // Route to get Address using latitude and longitude
-router.get('/getAddress', async (req, res) => {
+router.get('/getAddress/:lat/:lng', async (req, res) => {
   //   const params = new SearchUrlParams({
   //     key: process.env.GOOGLE_API_KEY,
   //   });
   //   console.log(`${params}`);
   try {
-    const lat = '33.771309'; // This will be req.lat
-    const lng = '-84.392929'; // This will be req.lng
+    const { lat } = req.params;
+    const { lng } = req.params;
     const latlng = `${lat},${lng}`;
-    const { data } = await axios.get(`${GOOGLE_URI}latlng=${latlng}&key=${key}`);
+    const { data } = await axios.get(`${REVERSE_GEOCODE_URI}latlng=${latlng}&key=${GOOGLE_API_KEY}`);
     return res.json({
       error: false,
       data: data.results[0].formatted_address,
