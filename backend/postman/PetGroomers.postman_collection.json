@@ -48,7 +48,7 @@
 				"header": [
 					{
 						"key": "Authorization",
-						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJncm9vbWVySWQiOiI1ZjBiNDVjNDE3YWM4YTQyNzdhYzM4NGIiLCJpYXQiOjE1OTQ1NzQyNzd9.EKXe8_RM5qj8uScbF2xeX3OO5YfucmefJpH3z2tvnbs",
+						"value": "",
 						"type": "text"
 					},
 					{
@@ -58,7 +58,7 @@
 					}
 				],
 				"url": {
-					"raw": "http://localhost:3006/api/Verify",
+					"raw": "http://localhost:3006/api/verify/Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJncm9vbWVySWQiOiI1ZjBiNDVjNDE3YWM4YTQyNzdhYzM4NGIiLCJpYXQiOjE1OTQ1NzQyNzd9.EKXe8_RM5qj8uScbF2xeX3OO5YfucmefJpH3z2tvnbs",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -66,7 +66,8 @@
 					"port": "3006",
 					"path": [
 						"api",
-						"Verify"
+						"verify",
+						"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJncm9vbWVySWQiOiI1ZjBiNDVjNDE3YWM4YTQyNzdhYzM4NGIiLCJpYXQiOjE1OTQ1NzQyNzd9.EKXe8_RM5qj8uScbF2xeX3OO5YfucmefJpH3z2tvnbs"
 					]
 				},
 				"description": "Do not forget to input your usertoken"
@@ -199,6 +200,129 @@
 						"api",
 						"customer",
 						"5f1806be7b27f3c2a1ba0818"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "getAddress",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "",
+						"value": "",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3006/api/getAddress/34.078420/-84.351480",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3006",
+					"path": [
+						"api",
+						"getAddress",
+						"34.078420",
+						"-84.351480"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "getDirection",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://maps.googleapis.com/maps/api/directions/json?origin=34.078770,-84.351450&destination=2999+Wildwood+Pkwy+Atlanta+GA&departure_time=now&alternatives=true&key=AIzaSyC4X24HNsiPQdEuiI_iSlykeVHNateumjg",
+					"protocol": "https",
+					"host": [
+						"maps",
+						"googleapis",
+						"com"
+					],
+					"path": [
+						"maps",
+						"api",
+						"directions",
+						"json"
+					],
+					"query": [
+						{
+							"key": "origin",
+							"value": "34.078770,-84.351450"
+						},
+						{
+							"key": "destination",
+							"value": "2999+Wildwood+Pkwy+Atlanta+GA"
+						},
+						{
+							"key": "departure_time",
+							"value": "now"
+						},
+						{
+							"key": "alternatives",
+							"value": "true"
+						},
+						{
+							"key": "key",
+							"value": "AIzaSyC4X24HNsiPQdEuiI_iSlykeVHNateumjg"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Test Hey Route",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJncm9vbWVySWQiOiI1ZjBiNDVjNDE3YWM4YTQyNzdhYzM4NGIiLCJpYXQiOjE1OTYwNzA4MzZ9.A7j9JKw1SBvN6Jb7SnvhYFyuCFtByT06YbjZOgLFkyE",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:3006/api/hey",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3006",
+					"path": [
+						"api",
+						"hey"
 					]
 				}
 			},
