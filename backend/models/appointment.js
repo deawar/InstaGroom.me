@@ -4,8 +4,8 @@ const { Schema } = mongoose;
 
 const AppointmentSchema = new Schema({
   apptDate: {
-    type: String,
-    trim: true,
+    type: Date,
+    min: () => Date(),
     required: true,
   },
   apptTime: {
@@ -15,9 +15,30 @@ const AppointmentSchema = new Schema({
   },
   notes: {
     type: String,
-    trim: true,
-    required: true,
   },
+  email: {
+    type: String,
+    trim: true,
+    lowercase: true,
+    required: 'Please enter an email id',
+  },
+  customerName: {
+    type: String,
+    trim: true,
+    required: 'Please enter customer name',
+  },
+  petService: [
+    {
+      service: {
+        type: String,
+        trim: true,
+      },
+      fee: {
+        type: String,
+        trim: true,
+      },
+    },
+  ],
   customer: [
     {
       type: Schema.Types.ObjectId,
