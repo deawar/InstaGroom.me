@@ -6,6 +6,7 @@ const logger = require('morgan');
 const HTMLRoutes = require('./routes/htmlRoutes');
 const CustomerRoutes = require('./routes/customerRoutes');
 const AuthRoutes = require('./routes/authRoutes');
+const GoogleApiRoutes = require('./routes/googleapiRoutes');
 
 // MongoDB cloud URL
 const { MONGODB_URI } = process.env;
@@ -44,6 +45,7 @@ mongoose.connection.on('error', (error) => {
 app.use(HTMLRoutes);
 app.use('/api', CustomerRoutes);
 app.use('/api', AuthRoutes);
+app.use('/api', GoogleApiRoutes);
 
 // Listening to PORT
 app.listen(PORT, () => {
