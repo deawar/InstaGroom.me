@@ -5,8 +5,9 @@ const db = require('../models');
 module.exports = (req, res, next) => {
 // Checking for authorization token on the request header
 // If not available throw error
-// console.log(req.headers);
-  const { authorization } = req.headers;
+  console.log(req.headers);
+  const { authorization } = req.params.authorization ? req.params : req.header;
+  console.log(req.params);
   if (!authorization) {
     return res.status(401).json({
       error: true,
