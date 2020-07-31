@@ -3,12 +3,12 @@ const mongoose = require('mongoose');
 const { Schema } = mongoose;
 
 const AppointmentSchema = new Schema({
-  apptDate: {
+  appointmentDate: {
     type: Date,
     min: () => Date(),
     required: true,
   },
-  apptTime: {
+  appointmentTime: {
     type: String,
     trim: true,
     required: true,
@@ -16,7 +16,7 @@ const AppointmentSchema = new Schema({
   notes: {
     type: String,
   },
-  email: {
+  customerEmail: {
     type: String,
     trim: true,
     lowercase: true,
@@ -39,6 +39,10 @@ const AppointmentSchema = new Schema({
       },
     },
   ],
+  totalFee: {
+    type: String,
+    trim: true,
+  },
   customer: [
     {
       type: Schema.Types.ObjectId,
