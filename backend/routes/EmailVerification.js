@@ -1,13 +1,12 @@
 const express = require('express');
-// const passport = require('passport');
 const bodyParser = require('body-parser');
 const os = require('os');
 const db = require('../models');
 const router = require('express').Router();
 const authToken = require('../config/authToken');
-// require('dotenv').config(); move to a dev-dependency must run "node -r dotenv/config server.js"
+require('dotenv').config(); // move to a dev-dependency must run "node -r dotenv/config server.js"
 // or "npm run start_local"
-const smtpTransport = require('../config/verfiy'); // { sendMail }
+const smtpTransport = require('../config/verify'); // { sendMail }
 
 const hostname = os.hostname();
 const PORT = process.env.PORT || 3000;
