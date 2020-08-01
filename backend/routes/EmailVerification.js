@@ -21,93 +21,94 @@ let secretToken = authToken;
 router.use(bodyParser.urlencoded({ extended: true }));
 router.use(bodyParser.json());
 
-router.post('/send', authToken, (req, res) => {
-  console.log('Line 29 in Send route', req.body);
-  if (req.isAuthenticated()) {
-    db.Groomer.findOne({ _id: req.params.id })
-      .then((dbUser) => {
-        const user = {
-          userInfo: dbUser.dataValues,
-          id: req.session.passport.user,
-          secretToken: dbUser.secretToken,
-          isloggedin: req.isAuthenticated(),
-        };
-        console.log('Line 79 User.Info:', user.userInfo);
-        console.log('Line 86 os.hostname(): ', os.hostname());
-        res.send(user.secretToken);
-        secretToken = user.secretToken;
-      })
-      .then(() => {
-        // eslint-disable-next-line no-cond-assign
-        if (process.env.NODE_ENV === 'development') {
-          link = `http://${hostname}:${PORT}/Verify?id=${secretToken}`;
-        } else {
-          link = `https://localhost:${PORT}/Verify?id=${secretToken}`;
-        }
-        console.log('Verify Return Link: ', link);
-        mailOptions = {
-          from: '"InstaGroomMe" <instagroomme@gmail.com>',
-          to: req.body.to,
-          subject:
-            'InstaGromMe is asking you to confirm your Email account',
-          // eslint-disable-next-line prefer-template
-          html: `<div itemscope itemtype="http://schema.org/EmailMessage">
-          <div itemprop="potentialAction" itemscope itemtype="http://schema.org/ConfirmAction">
-            <meta itemprop="name" content="Verify Email"/>
-            <div>
-              <p>Hi there,<br> Copy this token:<br><b>${secretToken}</b><br>and paste it into the Verification page at the link below.<br>
-              Please Click on the link to verify your email. <br><a href=${link}>Click here to verify</a></p>
-            <div itemprop="handler" itemscope itemtype="http://schema.org/HttpActionHandler">
-              <link itemprop="url" href="${link}"/>
-            </div>
-          </div>
-          <meta itemprop="description" content="Email Verification Request"/>
-        </div>
-        
-        <script type="application/ld+json">
-        {
-          "@context": "https://instagroom.me/",
-          "@type": "EmailMessage",
-          "potentialAction": {
-            "@type": "ConfirmAction",
-            "name": "Approve Expense",
-            "handler": {
-              "@type": "HttpActionHandler",
-              "url": "https://instagroom.me/verify?id=${secretToken}"
-            }
-          },
-          "description": "Email Verification for Silent Auction Gallery"
-        }
-        </script>`,
-          // html: `Hi there,<br> Copy this token:<br><b>${secretToken}</b>
-          // <br>and paste it into the Verification page at the link below.<br>
-          // Please Click on the link to verify your email. <br><a href=${link}>
-          // Click here to verify</a>`,
-        };
-        console.log('Sent by:', process.env.GMAIL_USERNAME);
-        console.log('Line 87 signup_controller.js: ', mailOptions);
-        // eslint-disable-next-line func-names
-        // eslint-disable-next-line no-unused-vars
-        smtpTransport.sendMail(mailOptions, (error, info) => {
-          if (error) {
-            console.log('Error happened!!!');
-            res.status(500).json({ message: 'Error happened!!' });
+const emailverify = function (userToken, email) {
+  router.post('/send', authToken, (req, res) => {
+    console.log('Line 29 in Send route', req.body);
+    if (req.isAuthenticated()) {
+      db.Groomer.findOne({ _id: req.params.id })
+        .then((dbUser) => {
+          const user = {
+            userInfo: dbUser.dataValues,
+            id: req.session.passport.user,
+            secretToken: dbUser.secretToken,
+            isloggedin: req.isAuthenticated(),
+          };
+          console.log('Line 79 User.Info:', user.userInfo);
+          console.log('Line 86 os.hostname(): ', os.hostname());
+          res.send(user.secretToken);
+          secretToken = user.secretToken;
+        })
+        .then(() => {
+          // eslint-disable-next-line no-cond-assign
+          if (process.env.NODE_ENV === 'development') {
+            link = `http://${hostname}:${PORT}/Verify?id=${secretToken}`;
           } else {
-            console.log('Email sent!!!');
-            res.json({ message: 'Email sent!!' });
+            link = `https://localhost:${PORT}/Verify?id=${secretToken}`;
           }
+          console.log('Verify Return Link: ', link);
+          mailOptions = {
+            from: '"InstaGroomMe" <instagroomme@gmail.com>',
+            to: req.body.to,
+            subject:
+              'InstaGromMe is asking you to confirm your Email account',
+            // eslint-disable-next-line prefer-template
+            html: `<div itemscope itemtype="http://schema.org/EmailMessage">
+            <div itemprop="potentialAction" itemscope itemtype="http://schema.org/ConfirmAction">
+              <meta itemprop="name" content="Verify Email"/>
+              <div>
+                <p>Hi there,<br> Copy this token:<br><b>${secretToken}</b><br>and paste it into the Verification page at the link below.<br>
+                Please Click on the link to verify your email. <br><a href=${link}>Click here to verify</a></p>
+              <div itemprop="handler" itemscope itemtype="http://schema.org/HttpActionHandler">
+                <link itemprop="url" href="${link}"/>
+              </div>
+            </div>
+            <meta itemprop="description" content="Email Verification Request"/>
+          </div>
+          
+          <script type="application/ld+json">
+          {
+            "@context": "https://instagroom.me/",
+            "@type": "EmailMessage",
+            "potentialAction": {
+              "@type": "ConfirmAction",
+              "name": "Approve Expense",
+              "handler": {
+                "@type": "HttpActionHandler",
+                "url": "https://instagroom.me/verify?id=${secretToken}"
+              }
+            },
+            "description": "Email Verification for Silent Auction Gallery"
+          }
+          </script>`,
+            // html: `Hi there,<br> Copy this token:<br><b>${secretToken}</b>
+            // <br>and paste it into the Verification page at the link below.<br>
+            // Please Click on the link to verify your email. <br><a href=${link}>
+            // Click here to verify</a>`,
+          };
+          console.log('Sent by:', process.env.GMAIL_USERNAME);
+          console.log('Line 87 signup_controller.js: ', mailOptions);
+          // eslint-disable-next-line func-names
+          // eslint-disable-next-line no-unused-vars
+          smtpTransport.sendMail(mailOptions, (error, info) => {
+            if (error) {
+              console.log('Error happened!!!');
+              res.status(500).json({ message: 'Error happened!!' });
+            } else {
+              console.log('Email sent!!!');
+              res.json({ message: 'Email sent!!' });
+            }
+          });
         });
-      });
-  } else {
-    // eslint-disable-next-line no-unused-vars
-    const user = {
-      id: null,
-      isloggedin: req.isAuthenticated(),
-    };
-    res.redirect('/');
-  }
-});
-
+    } else {
+      // eslint-disable-next-line no-unused-vars
+      const user = {
+        id: null,
+        isloggedin: req.isAuthenticated(),
+      };
+      res.redirect('/');
+    }
+  });
+}
 secretToken = ''; // to clear for verify
 router.use(bodyParser.urlencoded({ extended: true }));
 router.use(bodyParser.json());
@@ -189,3 +190,5 @@ router
       return next(error);
     }
   });
+
+  export verifyEmail();

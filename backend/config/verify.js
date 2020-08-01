@@ -11,7 +11,6 @@ const smtpTransport = nodemailer.createTransport({
   },
 });
 
-
 module.exports = {
   sendMail(mailOptions, cb) {
     smtpTransport.sendMail(mailOptions, (error, data) => {
