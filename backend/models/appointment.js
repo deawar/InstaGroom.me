@@ -29,6 +29,10 @@ const AppointmentSchema = new Schema({
   },
   petService: [
     {
+      key: {
+        type: String,
+        trim: true,
+      },
       service: {
         type: String,
         trim: true,

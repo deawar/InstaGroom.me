@@ -1,3 +1,4 @@
+/* eslint-disable consistent-return */
 /* eslint-disable no-underscore-dangle */
 const router = require('express').Router();
 const jwt = require('jsonwebtoken');
@@ -42,9 +43,9 @@ router.post('/signup', async (req, res) => {
       { $set: { userToken: token } },
       { new: true },
     )
-      .then((updatedGroomer) => res.json({
+      .then((newGroomer) => res.json({
         error: false,
-        data: { updatedGroomer },
+        data: { newGroomer },
         message: ' Successfully created new user. ',
       }));
   } catch (err) {
@@ -78,7 +79,7 @@ router.post('/signin', async (req, res) => {
     });
   }
   const groomerUser = await db.Groomer.findOne({ email });
-  if (!groomerUser || groomerUser.isVerified === false) {
+  if (!groomerUser || groomerUser.isVerified !== true) {
     return res.status(400).json({
       error: true,
       data: null,
