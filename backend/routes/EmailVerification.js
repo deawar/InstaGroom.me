@@ -3,7 +3,8 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const os = require('os');
 const db = require('../models');
-// const authToken = require('../config/authToken');
+const router = require('express').Router();
+const authToken = require('../config/authToken');
 // require('dotenv').config(); move to a dev-dependency must run "node -r dotenv/config server.js"
 // or "npm run start_local"
 const smtpTransport = require('../config/verfiy'); // { sendMail }
@@ -12,26 +13,19 @@ const hostname = os.hostname();
 const PORT = process.env.PORT || 3000;
 // const { checkNotAuthenticated } = require('../config/middleware/isAuthenticated');
 
-const router = express.Router();
-
-
 // Email verification
 let mailOptions;
 let link;
-let secretToken;
+let secretToken = authToken;
 // user.value.secretToken = secretToken;
 // user.value.active = false; // Flag account as inactive until verified
 router.use(bodyParser.urlencoded({ extended: true }));
 router.use(bodyParser.json());
 
-router.post('/send', (req, res) => {
-  console.log('Line 71 in Send route', req.body);
+router.post('/send', authToken, (req, res) => {
+  console.log('Line 29 in Send route', req.body);
   if (req.isAuthenticated()) {
-    db.User.findOne({
-      where: {
-        id: req.session.passport.user,
-      },
-    })
+    db.Groomer.findOne({ _id: req.params.id })
       .then((dbUser) => {
         const user = {
           userInfo: dbUser.dataValues,
@@ -165,25 +159,27 @@ router
           },
         };
         console.log('Condition----->: ', condition);
-        db.User.update(
-          {
-            secretToken: null,
-            active: true,
-          },
-          condition,
-          function (result) {
-            console.log('============>', result);
-            if (result.changedRows === 0) {
-              req.flash('You have either already confirmed your account OR you may need to register', 'I did NOT find you in our database.');
-              return res.status(404).end();
-            }
-            req.flash('Success', 'Thank you! Now you can Login.');
-            res.redirect('/login').status(200);
-          },
-        );
-
-        req.flash('Success', 'Thank you! Now you can Login.');
-        res.redirect('/signup');
+        db.User.update({ secretToken: null, active: true }, condition)
+            .then((result) => {
+                console.log('============>', result);
+                if (result.changedRows > 0) {
+                    res.json({
+                        error: false,
+                        data: singleCustomer,
+                        message: `Success! Thank you, please login.`,
+                    });
+                    res.redirect('/login').status(200),
+                }
+            })
+            .catch((err) => {
+                console.log(err);
+                res.status(500).json({
+                error: true,
+                data: null,
+                message: 'No Customer with such id found.',
+                });
+                res.redirect('/signup');
+            });
       } else {
         req.flash('Success', 'Thank you! Now you can Login.');
         res.redirect('/login');
