@@ -17,6 +17,8 @@ router.post('/signup', async (req, res) => {
     phone,
     email,
     password,
+    isVerified,
+    userToken,
   } = req.body;
 
   try {
@@ -30,14 +32,27 @@ router.post('/signup', async (req, res) => {
       phone,
       email,
       password,
+      isVerified,
+      userToken,
     });
     await groomerUser.save();
     const token = jwt.sign({ groomerId: groomerUser._id }, process.env.JWTKEY);
-    return res.json({
-      error: false,
-      data: { token },
-      message: ' Successfully created new user. ',
-    });
+    // db.Groomer.findByIdAndUpdate({ groomerId: groomerUser._id },
+    //   { $set: { userToken: `${token}` } });
+    console.log(groomerUser._id);
+    db.Groomer.findOneAndUpdate(
+      { _id: groomerUser._id },
+      { $set: { userToken: token } },
+      { new: true },
+    )
+      .then((updatedGroomer) => {
+        console.log(updatedGroomer);
+        return res.json({
+          error: false,
+          data: { token },
+          message: ' Successfully created new user. ',
+        });
+      });
   } catch (err) {
     return res.status(500).json({
       error: true,

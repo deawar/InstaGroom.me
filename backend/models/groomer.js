@@ -65,6 +65,14 @@ const GroomerSchema = new Schema({
     trim: true,
     required: true,
   },
+  isVerified: {
+    type: Boolean,
+    default: false,
+  },
+  userToken: {
+    type: String,
+    default: '',
+  },
 });
 
 // This will be executed before the user is created and saved see the word "pre"
