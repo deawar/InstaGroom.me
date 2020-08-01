@@ -7,7 +7,6 @@ module.exports = (req, res, next) => {
 // If not available throw error
   const { authorization } = req.params.authorization ? req.params : req.headers;
 
-  console.log(`Authorization - ${authorization}`);
   if (!authorization) {
     return res.status(401).json({
       error: true,
