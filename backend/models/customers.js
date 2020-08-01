@@ -101,6 +101,12 @@ const CustomerSchema = new Schema({
     type: Date,
     default: () => Date().now,
   },
+  appointment: [
+    {
+      type: Schema.Types.ObjectId,
+      ref: 'Appointment',
+    },
+  ],
 });
 
 module.exports = mongoose.model('Customer', CustomerSchema);

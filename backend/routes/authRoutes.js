@@ -17,6 +17,8 @@ router.post('/signup', async (req, res) => {
     phone,
     email,
     password,
+    isVerified,
+    userToken,
   } = req.body;
 
   try {
@@ -30,14 +32,21 @@ router.post('/signup', async (req, res) => {
       phone,
       email,
       password,
+      isVerified,
+      userToken,
     });
     await groomerUser.save();
     const token = jwt.sign({ groomerId: groomerUser._id }, process.env.JWTKEY);
-    return res.json({
-      error: false,
-      data: { token },
-      message: ' Successfully created new user. ',
-    });
+    db.Groomer.findOneAndUpdate(
+      { _id: groomerUser._id },
+      { $set: { userToken: token } },
+      { new: true },
+    )
+      .then((updatedGroomer) => res.json({
+        error: false,
+        data: { updatedGroomer },
+        message: ' Successfully created new user. ',
+      }));
   } catch (err) {
     return res.status(500).json({
       error: true,
@@ -69,11 +78,11 @@ router.post('/signin', async (req, res) => {
     });
   }
   const groomerUser = await db.Groomer.findOne({ email });
-  if (!groomerUser) {
+  if (!groomerUser || groomerUser.isVerified === false) {
     return res.status(400).json({
       error: true,
       data: null,
-      message: ' Invalid email or password ',
+      message: ' Invalid email/password or User not verified ',
     });
   }
   try {

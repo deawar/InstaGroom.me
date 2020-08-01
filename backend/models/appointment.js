@@ -3,27 +3,46 @@ const mongoose = require('mongoose');
 const { Schema } = mongoose;
 
 const AppointmentSchema = new Schema({
-  apptDate: {
-    type: String,
-    trim: true,
+  appointmentDate: {
+    type: Date,
+    min: () => Date(),
     required: true,
   },
-  apptTime: {
+  appointmentTime: {
     type: String,
     trim: true,
     required: true,
   },
   notes: {
     type: String,
-    trim: true,
-    required: true,
   },
-  customer: [
+  customerEmail: {
+    type: String,
+    trim: true,
+    lowercase: true,
+    required: 'Please enter an email id',
+  },
+  customerName: {
+    type: String,
+    trim: true,
+    required: 'Please enter customer name',
+  },
+  petService: [
     {
-      type: Schema.Types.ObjectId,
-      ref: 'Customer',
+      service: {
+        type: String,
+        trim: true,
+      },
+      fee: {
+        type: String,
+        trim: true,
+      },
     },
   ],
+  totalFee: {
+    type: String,
+    trim: true,
+  },
 });
 
 module.exports = mongoose.model('Appointment', AppointmentSchema);
