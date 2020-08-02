@@ -1,8 +1,10 @@
+/* eslint-disable consistent-return */
 /* eslint-disable no-underscore-dangle */
 const router = require('express').Router();
 const jwt = require('jsonwebtoken');
 const db = require('../models');
 const authToken = require('../config/authToken');
+const emailverify = require('./EmailVerification');
 
 // Signup Route
 router.post('/signup', async (req, res) => {
@@ -42,11 +44,14 @@ router.post('/signup', async (req, res) => {
       { $set: { userToken: token } },
       { new: true },
     )
-      .then((updatedGroomer) => res.json({
-        error: false,
-        data: { updatedGroomer },
-        message: ' Successfully created new user. ',
-      }));
+      .then((updatedGroomer) => {
+        emailverify(groomerUser._id);
+        res.json({
+          error: false,
+          data: { updatedGroomer },
+          message: ' Successfully created new user. ',
+        });
+      });
   } catch (err) {
     return res.status(500).json({
       error: true,
@@ -56,10 +61,11 @@ router.post('/signup', async (req, res) => {
   }
 });
 
-// Verify Signed in Route
+// Email Verify Route
 // This route is to retrive the email id or any other info of user by passing token..
 // This is to verify we can get email of user only when valid token is sent..
 router.get('/verify/:authorization', authToken, (req, res) => {
+  console.log(req);
   res.status(200).json({
     error: false,
     data: `${req.groomer.email}`,
@@ -78,7 +84,7 @@ router.post('/signin', async (req, res) => {
     });
   }
   const groomerUser = await db.Groomer.findOne({ email });
-  if (!groomerUser || groomerUser.isVerified === false) {
+  if (!groomerUser || groomerUser.isVerified !== true) {
     return res.status(400).json({
       error: true,
       data: null,

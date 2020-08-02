@@ -30,19 +30,22 @@ router.post('/addCustomer', (req, res) => {
 
 // Find all customer
 router.get('/customer', authToken, (req, res) => {
-  db.Customer.find({}).then((customer) => {
-    console.log(customer);
-    res.json({
-      error: false,
-      data: customer,
-      message: 'All available users.',
+  db.Customer.find({})
+    .populate('appointment')
+    .then((customer) => {
+      console.log(customer);
+      res.json({
+        error: false,
+        data: customer,
+        message: 'All available users.',
+      });
     });
-  });
 });
 
 // Find a single customer
 router.get('/customer/:id', authToken, (req, res) => {
   db.Customer.findOne({ _id: req.params.id })
+    .populate('appointment')
     .then((singleCustomer) => {
       res.json({
         error: false,

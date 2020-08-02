@@ -8,6 +8,7 @@ const CustomerRoutes = require('./routes/customerRoutes');
 const AuthRoutes = require('./routes/authRoutes');
 const GoogleApiRoutes = require('./routes/googleapiRoutes');
 const AppointmentRoutes = require('./routes/appointmentRoute');
+const router = require('./routes/htmlRoutes');
 
 // MongoDB cloud URL
 const { MONGODB_URI } = process.env;
@@ -53,104 +54,3 @@ app.use('/api', AppointmentRoutes);
 app.listen(PORT, () => {
   console.log(`==> 🌎 App running on http://localhost:${PORT}`);
 });
-
-// app.post('/submit', (req, res) => {
-//   console.log(req.body);
-
-//   db.customer.insert(req.body, (error, data) => {
-//     if (error) {
-//       res.send(error);
-//     } else {
-//       res.send(data);
-//     }
-//   });
-// });
-
-// app.get('/all', (req, res) => {
-//   db.customer.find({}, (error, data) => {
-//     if (error) {
-//       res.send(error);
-//     } else {
-//       res.json(data);
-//     }
-//   });
-// });
-
-// app.get('/find', (req, res) => {
-//   res.sendFile(path.join(`${__dirname}./public/customer.html`));
-// });
-
-// app.post('/submit', (req, res) => {
-//   console.log(req.body);
-
-//   db.customer.insert(req.body, (error, data) => {
-//     if (error) {
-//       res.send(error);
-//     } else {
-//       res.send(data);
-//     }
-//   });
-// });
-
-// app.get('/find/:id', (req, res) => {
-//   db.notes.findOne(
-//     {
-//       _id: mongojs.ObjectId(req.params.id),
-//     },
-//     (error, data) => {
-//       if (error) {
-//         res.send(error);
-//       } else {
-//         res.send(data);
-//       }
-//     },
-//   );
-// });
-
-// app.post('/update/:id', (req, res) => {
-//   db.customer.update(
-//     {
-//       _id: mongojs.ObjectId(req.params.id),
-//     },
-//     {
-//       $set: {
-//         title: req.body.title,
-//         customer: req.body.customer, // pet owner
-//         client: req.body.client, // pet breed and or any special needs
-//         modified: Date.now(),
-//       },
-//     },
-//     (error, data) => {
-//       if (error) {
-//         res.send(error);
-//       } else {
-//         res.send(data);
-//       }
-//     },
-//   );
-// });
-
-// app.delete('/delete/:id', (req, res) => {
-//   db.customer.remove(
-//     {
-//       _id: mongojs.ObjectID(req.params.id),
-//     },
-//     (error, data) => {
-//       if (error) {
-//         res.send(error);
-//       } else {
-//         res.send(data);
-//       }
-//     },
-//   );
-// });
-
-// app.delete('/clearall', (req, res) => {
-//   db.customer.remove({}, (error, response) => {
-//     if (error) {
-//       res.send(error);
-//     } else {
-//       res.send(response);
-//     }
-//   });
-// });

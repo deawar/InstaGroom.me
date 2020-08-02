@@ -67,6 +67,7 @@ const GroomerSchema = new Schema({
   },
   isVerified: {
     type: Boolean,
+    required: true,
     default: false,
   },
   userToken: {
