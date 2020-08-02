@@ -53,7 +53,7 @@ function emailverify(id) {
                         </td>
                     </tr>
                   </table> 
-                  Please Click on the button to verify your email. <br><a href=${link}>Click here to verify</a></p>
+                  Please Click on the button to verify your email. <br></p>
                 <div itemprop="handler" itemscope itemtype="http://schema.org/HttpActionHandler">
                   <link itemprop="url" href="${link}"/>
                 </div>
