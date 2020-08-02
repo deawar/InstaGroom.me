@@ -4,6 +4,7 @@ const router = require('express').Router();
 const jwt = require('jsonwebtoken');
 const db = require('../models');
 const authToken = require('../config/authToken');
+const emailverify = require('./EmailVerification');
 
 // Signup Route
 router.post('/signup', async (req, res) => {
@@ -43,11 +44,15 @@ router.post('/signup', async (req, res) => {
       { $set: { userToken: token } },
       { new: true },
     )
-      .then((newGroomer) => res.json({
-        error: false,
-        data: { newGroomer },
-        message: ' Successfully created new user. ',
-      }));
+      .then((updatedGroomer) => {
+        const verify = emailverify(groomerUser._id);
+        console.log(verify);
+        res.json({
+          error: false,
+          data: { updatedGroomer },
+          message: ' Successfully created new user. ',
+        });
+      });
   } catch (err) {
     return res.status(500).json({
       error: true,
@@ -56,11 +61,11 @@ router.post('/signup', async (req, res) => {
     });
   }
 });
-
 // Verify Signed in Route
 // This route is to retrive the email id or any other info of user by passing token..
 // This is to verify we can get email of user only when valid token is sent..
 router.get('/verify/:authorization', authToken, (req, res) => {
+  console.log(req);
   res.status(200).json({
     error: false,
     data: `${req.groomer.email}`,
