@@ -45,8 +45,7 @@ router.post('/signup', async (req, res) => {
       { new: true },
     )
       .then((updatedGroomer) => {
-        const verify = emailverify(groomerUser._id);
-        console.log(verify);
+        emailverify(groomerUser._id);
         res.json({
           error: false,
           data: { updatedGroomer },
@@ -61,7 +60,8 @@ router.post('/signup', async (req, res) => {
     });
   }
 });
-// Verify Signed in Route
+
+// Email Verify Route
 // This route is to retrive the email id or any other info of user by passing token..
 // This is to verify we can get email of user only when valid token is sent..
 router.get('/verify/:authorization', authToken, (req, res) => {
