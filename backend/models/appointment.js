@@ -47,6 +47,10 @@ const AppointmentSchema = new Schema({
     type: String,
     trim: true,
   },
+  customer: {
+    type: Schema.Types.ObjectId,
+    ref: 'Customer',
+  },
 });
 
 module.exports = mongoose.model('Appointment', AppointmentSchema);

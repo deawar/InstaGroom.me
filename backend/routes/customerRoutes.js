@@ -60,4 +60,27 @@ router.get('/customer/:id', authToken, (req, res) => {
     });
 });
 
+router.put('/appointment/customer', (req, res) => {
+  const emailToAddTo = req.body.customerEmail;
+  db.Customer.findOneAndUpdate({ email1: emailToAddTo },
+    { $push: { appointment: req.body } },
+    { new: true })
+    .then((updatedCustomer) => {
+      console.log(updatedCustomer);
+      res.json({
+        error: true,
+        data: updatedCustomer.appointment,
+        message: 'unable to add Appointment',
+      });
+    })
+    .catch((err) => {
+      console.log(err);
+      res.status(500).json({
+        error: true,
+        data: err,
+        message: 'unable to add Appointment',
+      });
+    });
+});
+
 module.exports = router;

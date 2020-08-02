@@ -1,17 +1,27 @@
+/* eslint-disable no-underscore-dangle */
 const router = require('express').Router();
 const db = require('../models');
 const authToken = require('../config/authToken');
 
 // Add a new Appointment
 router.post('/addAppointment', (req, res) => {
-//   res.json('Thank You for Appointment!');
   db.Appointment.create(req.body)
     .then((appointment) => {
-      res.json({
-        error: false,
-        data: appointment,
-        message: 'Appointment was sucessfully added.',
-      });
+      const appointmentId = appointment._id;
+      db.Customer.findOneAndUpdate({ email1: appointment.customerEmail },
+        { $push: { appointment: appointmentId } },
+        { new: true })
+        .then((updatedCustomer) => {
+          console.log(updatedCustomer);
+          res.json({
+            error: false,
+            data: appointment,
+            message: 'Appointment was sucessfully added.',
+          });
+        })
+        .catch((err) => {
+          console.log(err);
+        });
     })
     .catch((err) => {
       console.log(err);
@@ -23,10 +33,10 @@ router.post('/addAppointment', (req, res) => {
     });
 });
 
-router.get('/findappointment', (req, res) => {
-  db.Appointment
-    .findOne({ customerEmail: /jacob_smith@yahoo.com/i })
-    .populate('customer') // only return the Persons name
+router.get('/findappointmentbyEmail', authToken, (req, res) => {
+  db.Customer
+    .find({ email1: req.body.customerEmail })
+    .populate('appointment') // only return the Persons name
     .then((appointment) => {
       console.log(appointment);
       res.json({
