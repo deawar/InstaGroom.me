@@ -1,3 +1,4 @@
+/* eslint-disable no-underscore-dangle */
 const os = require('os');
 const db = require('../models');
 
@@ -7,13 +8,12 @@ const smtpTransport = require('../config/verify'); // { sendMail }
 
 const hostname = os.hostname();
 const PORT = process.env.PORT || 3000;
-// const { checkNotAuthenticated } = require('../config/middleware/isAuthenticated');
 
 // Email verification
 let mailOptions;
 let link;
 
-const emailverify = function (id) {
+function emailverify(id) {
   db.Groomer.findOne({ _id: id })
     .then((dbUser) => {
       const user = {
@@ -22,13 +22,11 @@ const emailverify = function (id) {
         secretToken: dbUser.userToken,
         isVerified: dbUser.isVerified,
       };
-      console.log('***DBUser***:', user);
       if (process.env.NODE_ENV === 'development') {
         link = `http://${hostname}:${PORT}/api/verify/Bearer%20${user.secretToken}`;
       } else {
         link = `https://localhost:${PORT}/api/verify/Bearer%20${user.secretToken}`;
       }
-      console.log('Verify Return Link: ', link);
       mailOptions = {
         from: '"InstaGroomMe" <instagroomme@gmail.com>',
         to: user.email,
@@ -83,22 +81,19 @@ const emailverify = function (id) {
         // Please Click on the link to verify your email. <br><a href=${link}>
         // Click here to verify</a>`,
       };
-      console.log('Sent by:', process.env.GMAIL_USERNAME);
-      console.log('Line 81 signup_controller.js: ', mailOptions);
+      // console.log('Sent by:', process.env.GMAIL_USERNAME);
+      // console.log('Line 81 signup_controller.js: ', mailOptions);
       // eslint-disable-next-line func-names
       // eslint-disable-next-line no-unused-vars
       smtpTransport.sendMail(mailOptions, (error, info) => {
-        console.log('Information!!!', info);
+        // console.log('Information!!!', info);
         if (error) {
           console.log('Error happened!!!', error);
-          console.log('Information!!!', info);
-          // res.status(500).json({ message: 'Error happened!!' });
         } else {
           console.log('Email sent!!!');
-          // res.json({ message: 'Email sent!!' });
         }
       });
     });
-};
+}
 
 module.exports = emailverify;
