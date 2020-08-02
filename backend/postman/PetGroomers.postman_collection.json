@@ -19,7 +19,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n\t\"firstName\": \"User2\",\n\t\"lastName\": \"Test2\",\n\t\"street\": \"1235 Winding River Rd\",\n\t\"city\": \"Atlanta\",\n\t\"state\": \"GA\",\n\t\"zip\": \"30035\",\n\t\"phone\": \"404-798-9873\",\n\t\"email\": \"groomer03@gmail.com\",\n\t\"password\": \"helloworld001\"\n}",
+					"raw": "{\n\t\"firstName\": \"Luis\",\n\t\"lastName\": \"Parez\",\n\t\"street\": \"1235 May Lane\",\n\t\"city\": \"Alpharetta\",\n\t\"state\": \"GA\",\n\t\"zip\": \"30005\",\n\t\"phone\": \"404-552-7758\",\n\t\"email\": \"luis_parez@gmail.com\",\n\t\"password\": \"helloworld001\"\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -82,12 +82,13 @@
 					{
 						"key": "Authorization",
 						"value": "",
-						"type": "text"
+						"type": "text",
+						"disabled": true
 					}
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n\t\"email\": \"groomer03@gmail.com\",\n\t\"password\": \"helloworld001\"\n}",
+					"raw": "{\n\t\"email\": \"luis_parez@gmail.com\",\n\t\"password\": \"helloworld001\"\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -117,7 +118,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "  {\n  \"firstName\": \"Customer1\",\n  \"lastName\": \"Test1\",\n  \"street\": \"123 May Lane\",\n  \"city\": \"Atlanta\",\n  \"state\": \"GA\",\n  \"zip\":\"30029\",\n  \"phone1\": \"404-883-7593\",\n  \"phone2\": \"\",\n  \"email1\":\"customer1_test@gmail.com\",\n  \"email2\": \"\",\n  \"numberOfPets\": 1,\n  \"petDetail\": [{\n      \"petName\": \"Tiger\",\n      \"age\": 4,\n      \"gender\": \"male\",\n      \"breed\": \"Dobermann\",\n      \"medicalCondition\": \"Allergic to Soap\"\n    }],\n    \"date_created\":\"2020-07-22\"\n  }",
+					"raw": "  {\n  \"firstName\": \"Customer2\",\n  \"lastName\": \"Test2\",\n  \"street\": \"628 Old McDonald Lane\",\n  \"city\": \"Roswell\",\n  \"state\": \"GA\",\n  \"zip\":\"30033\",\n  \"phone\": \"404-245-4658\",\n  \"email\":\"customer2_test2@gmail.com\",\n  \"numberOfPets\": 1,\n  \"petDetail\": [{\n      \"petName\": \"Tiger\",\n      \"age\": 4,\n      \"gender\": \"male\",\n      \"breed\": \"Dobermann\",\n      \"medicalCondition\": \"Allergic to Soap\"\n    }],\n  \"appointment\":[],\n  \"date_created\":\"\"\n  }",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -190,7 +191,7 @@
 					}
 				],
 				"url": {
-					"raw": "http://localhost:3006/api/customer/5f1806be7b27f3c2a1ba0818",
+					"raw": "http://localhost:3006/api/customer/5f2607bf38e24a5f7cdcfb53",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -199,7 +200,7 @@
 					"path": [
 						"api",
 						"customer",
-						"5f1806be7b27f3c2a1ba0818"
+						"5f2607bf38e24a5f7cdcfb53"
 					]
 				}
 			},
@@ -323,6 +324,56 @@
 					"path": [
 						"api",
 						"hey"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "AppointmentbyEmail",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3006/api/findAppointmentbyEmail",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3006",
+					"path": [
+						"api",
+						"findAppointmentbyEmail"
+					]
+				},
+				"description": "Needs Bearer token to work\n"
+			},
+			"response": []
+		},
+		{
+			"name": "CreateAppointment",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"appointmentDate\": \"October 28 2020\",\n    \"appointmentTime\": \"4:30 pm EDT\",\n    \"customerName\": \"Customer2 Test2\",\n    \"customerEmail\": \"customer2_test2@gmail.com\",\n    \"notes\": \"Tiger is allergic to soap\",\n    \"totalFee\": \"32.00\",\n    \"petService\": [\n        {\n            \"key\": \"1\",\n            \"service\": \"Haircut\",\n            \"fee\": \"22.00\"\n        },\n        {   \n            \"key\":\"2\",\n            \"service\": \"Shampoo\",\n            \"fee\": \"10.00\"\n        }\n    ]\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3006/api/addAppointment",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3006",
+					"path": [
+						"api",
+						"addAppointment"
 					]
 				}
 			},

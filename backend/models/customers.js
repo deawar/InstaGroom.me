@@ -33,7 +33,7 @@ const CustomerSchema = new Schema({
     trim: true,
     required: 'Please enter a zip code',
   },
-  phone1: {
+  phone: {
     type: String,
     trim: true,
     validate: {
@@ -44,13 +44,10 @@ const CustomerSchema = new Schema({
     },
     required: 'User phone number required',
   },
-  phone2: {
+  email: {
     type: String,
     trim: true,
-  },
-  email1: {
-    type: String,
-    trim: true,
+    unique: true,
     required: 'Please enter an email address',
     lowercase: true,
     validate: {
@@ -59,11 +56,6 @@ const CustomerSchema = new Schema({
       },
       message: (props) => `${props.value} is not a valid email!`,
     },
-  },
-  email2: {
-    type: String,
-    trim: true,
-    lowercase: true,
   },
   numberOfPets: {
     // this section could be a separate schema type such as PetSchema

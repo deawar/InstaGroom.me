@@ -29,6 +29,10 @@ const AppointmentSchema = new Schema({
   },
   petService: [
     {
+      key: {
+        type: String,
+        trim: true,
+      },
       service: {
         type: String,
         trim: true,
@@ -42,6 +46,10 @@ const AppointmentSchema = new Schema({
   totalFee: {
     type: String,
     trim: true,
+  },
+  customer: {
+    type: Schema.Types.ObjectId,
+    ref: 'Customer',
   },
 });
 
