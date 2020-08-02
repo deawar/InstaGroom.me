@@ -8,6 +8,7 @@ const CustomerRoutes = require('./routes/customerRoutes');
 const AuthRoutes = require('./routes/authRoutes');
 const GoogleApiRoutes = require('./routes/googleapiRoutes');
 const AppointmentRoutes = require('./routes/appointmentRoute');
+const router = require('./routes/htmlRoutes');
 
 // MongoDB cloud URL
 const { MONGODB_URI } = process.env;
