@@ -65,12 +65,25 @@ router.post('/signup', async (req, res) => {
 // This route is to retrive the email id or any other info of user by passing token..
 // This is to verify we can get email of user only when valid token is sent..
 router.get('/verify/:authorization', authToken, (req, res) => {
-  console.log(req);
-  res.status(200).json({
-    error: false,
-    data: `${req.groomer.email}`,
-    message: 'User email has been verified ',
-  });
+  console.log('authRouts.js req:', req.groomer);
+  db.Groomer.findOneAndUpdate(
+    { email: req.groomer.email },
+    {
+      $set: {
+        userToken: '',
+        isVerified: true,
+      },
+    },
+    { new: true },
+  )
+    .then((verifiedGroomer) => {
+      console.log('Verified: ', verifiedGroomer);
+      res.status(200).json({
+        error: false,
+        data: `${req.groomer.email}`,
+        message: 'User email has been verified ',
+      });
+    });
 });
 
 // Signin Route
