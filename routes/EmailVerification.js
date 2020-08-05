@@ -25,7 +25,7 @@ function emailverify(id) {
       if (process.env.NODE_ENV === 'development') {
         link = `http://${hostname}:${PORT}/api/verify/Bearer%20${user.secretToken}`;
       } else {
-        link = `https://localhost:${PORT}/api/verify/Bearer%20${user.secretToken}`;
+        link = `https://www.instagroom.me/api/verify/Bearer%20${user.secretToken}`;
       }
       mailOptions = {
         from: '"InstaGroomMe" <instagroomme@gmail.com>',
