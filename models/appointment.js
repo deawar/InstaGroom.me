@@ -5,7 +5,7 @@ const { Schema } = mongoose;
 const AppointmentSchema = new Schema({
   appointmentDate: {
     type: Date,
-    //min: () => Date(),  TODO change to Date()-1
+    // min: () => Date(),  TODO change to Date()-1
     required: true,
   },
   appointmentTime: {

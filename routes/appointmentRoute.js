@@ -55,4 +55,35 @@ router.get('/findappointmentbyEmail', authToken, (req, res) => {
       });
     });
 });
+
+// Find appointment by date
+router.get('/findappointment/:date', (req, res) => {
+  db.Appointment
+    .find({ appointmentDate: req.params.date })
+    // .populate('appointment') // only return the Persons name
+    .then((appointment) => {
+      console.log(appointment);
+      if (!appointment.length) {
+        res.json({
+          error: false,
+          data: appointment,
+          message: 'You do not have any appointment for the date specified',
+        });
+      } else {
+        res.json({
+          error: false,
+          data: appointment,
+          message: 'Requested Appointment Info for the day',
+        });
+      }
+    })
+    .catch((err) => {
+      console.log(err);
+      res.status(500).json({
+        error: true,
+        data: null,
+        message: 'Oops something went wrong!!',
+      });
+    });
+});
 module.exports = router;
