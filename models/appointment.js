@@ -5,7 +5,7 @@ const { Schema } = mongoose;
 const AppointmentSchema = new Schema({
   appointmentDate: {
     type: Date,
-    //min: () => Date(),  TODO change to Date()-1
+    // min: () => Date(),  TODO change to Date()-1
     required: true,
   },
   appointmentTime: {
@@ -46,10 +46,6 @@ const AppointmentSchema = new Schema({
   totalFee: {
     type: String,
     trim: true,
-  },
-  customer: {
-    type: Schema.Types.ObjectId,
-    ref: 'Customer',
   },
 });
 
