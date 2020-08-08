@@ -29,12 +29,22 @@ router.get('/getAddress/:lat/:lng', async (req, res) => {
 });
 
 // Route to get Direction from one place to another
-router.get('/getDirection/:lat/:lng', async (req, res) => {
+router.get('/getDirection', async (req, res) => {
   try {
-    const { lat } = req.params;
-    const { lng } = req.params;
-    const origin = `${lat},${lng}`;
-    const destination = '2999+Wildwood+Pkwy+Atlanta+GA';
+    // const { lat } = req.params;
+    // const { lng } = req.params;
+    // const origin = `${lat},${lng}`;
+    const latitude = req.body.origin.userLat;
+    const longitude = req.body.origin.userLng;
+    const ulatitude = req.body.destination.clientLat;
+    const ulongitude = req.body.destination.clientLng;
+
+    const origin = `${latitude},${longitude}`;
+    const destination = `${ulatitude},${ulongitude}`;
+    // const address = req.body.clientAddress;
+    // const split = address.split(' ');
+    // const destination = split.slice(0, split.length).join('+');
+    console.log(destination);
     const { data } = await
     axios.get(
       `${GOOGLE_DIRECTION_URI}origin=${origin}&destination=${destination}&departure_time=now&alternatives=true&key=${GOOGLE_API_KEY}`,
@@ -49,7 +59,6 @@ router.get('/getDirection/:lat/:lng', async (req, res) => {
     return res.json({
       error: false,
       result: mydirection,
-      // distance: data.routes[0].legs.distance.text,
     });
   } catch (err) {
     return res.status(500).json({
