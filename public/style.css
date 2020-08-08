@@ -1,0 +1,21 @@
+body {
+    background-image: url('https://images.unsplash.com/photo-1516734212186-a967f81ad0d7?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1502&q=80');
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: unset;
+    margin-bottom: 100px;
+    /* background-blend-mode: lighten; */
+    
+}
+.card {
+    opacity: 70%;
+    background-color: white;
+    
+}
+.row {
+    margin-top: 10%;
+    justify-content: space-around;
+}
+li {
+    text-align: left;
+}
