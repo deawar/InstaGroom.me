@@ -63,4 +63,24 @@ router.get('/customer/:id', authToken, (req, res) => {
     });
 });
 
+// Find a single customer by Email
+router.get('/customerEmail/:email', authToken, (req, res) => {
+  db.Customer.findOne({ email: req.params.email })
+    .populate('appointment')
+    .then((singleCustomer) => {
+      res.json({
+        error: false,
+        data: singleCustomer,
+        message: 'Customer with requested email-id',
+      });
+    })
+    .catch((err) => {
+      console.log(err);
+      res.status(500).json({
+        error: true,
+        data: null,
+        message: 'No Customer with such email-id found.',
+      });
+    });
+});
 module.exports = router;
