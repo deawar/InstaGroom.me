@@ -29,7 +29,8 @@ router.get('/getAddress/:lat/:lng', async (req, res) => {
 });
 
 // Route to get Direction from one place to another
-router.get('/getDirection', async (req, res) => {
+router.post('/getDirection', async (req, res) => {
+  console.log("request------>", req);
   try {
     // const { lat } = req.params;
     // const { lng } = req.params;
@@ -44,6 +45,7 @@ router.get('/getDirection', async (req, res) => {
     // const address = req.body.clientAddress;
     // const split = address.split(' ');
     // const destination = split.slice(0, split.length).join('+');
+    console.log(origin);
     console.log(destination);
     const { data } = await
     axios.get(
@@ -61,6 +63,7 @@ router.get('/getDirection', async (req, res) => {
       result: mydirection,
     });
   } catch (err) {
+    console.log("Error:", err);
     return res.status(500).json({
       error: true,
       data: err,
