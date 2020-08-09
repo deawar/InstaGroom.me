@@ -4,7 +4,7 @@ body {
     background-size: cover;
     background-attachment: fixed;
     /* background-size: unset; */
-    margin-bottom: 100px;
+    margin-bottom: 80px;
     /* background-blend-mode: lighten; */
     
 }
@@ -25,3 +25,21 @@ li {
     height: 75%;
     display: block;
 }
+.btn {
+    margin-bottom: 10px;
+    padding: 10px;
+}
+
+.smart-scroll{
+    position: fixed;
+    top: 0;
+    right: 0;
+    left: 0;
+    z-index: 1030;
+  }
+  .scrolled-down{
+     transform:translateY(-100%); transition: all 1s ease-in-out;
+  }
+  .scrolled-up{
+     transform:translateY(0); transition: all 0.5s ease-in-out;
+  }
