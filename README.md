@@ -32,14 +32,14 @@ Create a `.env` file for all system variables:
 NODE_ENV=development
 PORT=3000
 
-# MongoDB Credentials
+# MongoDB Credentials  Note-We found it VERY Helpful to setup a centralized Databaset to work from. That way we never had to reseed and we always knew if database calls worked.*
 DB_USER=root
 DB_PASSWORD=root
 DB_NAME=groomDb
 DB_HOST=localhost
 
 # SESSION SECRET
-SESSION_SECRET='your secret phrase'
+JWTKEY='your secret password'
 
 # GMAIL Account credentials
 GMAIL_SERVICE_HOST=smtp.gmail.com
@@ -47,6 +47,11 @@ GMAIL_PASSWORD='your gmail password here'
 GMAIL_USERNAME='gmail-account@gmail.com'
 GMAIL_SERVICE_SECURE=false
 GMAIL_SERVICE_PORT=587
+GOOGLE_DIRECTION_URI='https://maps.googleapis.com/maps/api/directions/json?'
+GOOGLE_MAPS_URL='https://maps.googleapis.com/maps/api/geocode/json'
+GOOGLE_MAPS_API_KEY="Your API KEY HERE"
+GOOGLE_API_KEY="Your API KEY HERE"
+REVERSE_GEOCODE_URI='https://maps.googleapis.com/maps/api/geocode/json?'
 
 # Twilio Account Credentials to be completed in v2.0
 TWILIO_ACC_SID='your Twilio SID here'
@@ -86,11 +91,14 @@ Or if you prefer `nodemon` :<br>
 This application will be used for helping small businesses find a better way to conduct their daily business activites. So, please be respectful and mindful to others
 
 <br>
-<img src="https://placeholder.com" alt="Demo">
+<img src="https://www.instagroom.me" alt="Demo">
 
 ## Questions
 
 <img src="https://avatars1.githubusercontent.com/u/15312495?s=400&u=ca57805f0913479f15a13ed8e5a1577eb95c0926&v=4" alt="ME" width="150" height="150"><br>
 If you have any questions about the repo contact deawar directly at deawar@gmail.com, ankmud01@gmail.com, Atmurray-FullStack or itsjonkelley. Thank you for your interest.<br>
 If you want to see more of my work please click here https://api.github.com/users/deawar/repos.
+
+## Deployed BackEnd
+[InstaGroom.Me](https://www.instagroome.me) Hosted on Heroku with directions to download the InstaGroom-Client from the GooglePlay website.
 
