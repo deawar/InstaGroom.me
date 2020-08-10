@@ -30,20 +30,17 @@ router.get('/getAddress/:lat/:lng', async (req, res) => {
 
 // Route to get Direction from one place to another
 router.post('/getDirection', async (req, res) => {
-  console.log("request------>", req);
   try {
     const latitude = req.body.origin.userLat;
     const longitude = req.body.origin.userLng;
-    const ulatitude = req.body.destination.clientLat;
-    const ulongitude = req.body.destination.clientLng;
+    // const ulatitude = req.body.destination.clientLat;
+    // const ulongitude = req.body.destination.clientLng;
 
     const origin = `${latitude},${longitude}`;
-    const destination = `${ulatitude},${ulongitude}`;
-    // const address = req.body.clientAddress;
-    // const split = address.split(' ');
-    // const destination = split.slice(0, split.length).join('+');
-    console.log(origin);
-    console.log(destination);
+    // const destination = `${ulatitude},${ulongitude}`;
+    const address = req.body.clientAddress;
+    const split = address.split(' ');
+    const destination = split.slice(0, split.length).join('+');
     const { data } = await
     axios.get(
       `${GOOGLE_DIRECTION_URI}origin=${origin}&destination=${destination}&departure_time=now&alternatives=true&key=${GOOGLE_API_KEY}`,
@@ -60,7 +57,6 @@ router.post('/getDirection', async (req, res) => {
       result: mydirection,
     });
   } catch (err) {
-    console.log("Error:", err);
     return res.status(500).json({
       error: true,
       data: err,
