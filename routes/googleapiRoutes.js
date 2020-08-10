@@ -32,9 +32,6 @@ router.get('/getAddress/:lat/:lng', async (req, res) => {
 router.post('/getDirection', async (req, res) => {
   console.log("request------>", req);
   try {
-    // const { lat } = req.params;
-    // const { lng } = req.params;
-    // const origin = `${lat},${lng}`;
     const latitude = req.body.origin.userLat;
     const longitude = req.body.origin.userLng;
     const ulatitude = req.body.destination.clientLat;
