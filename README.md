@@ -15,7 +15,7 @@ Andrew Murray, Ankit Mudvari, Dean Warren, Jonathan Kelly
 * [Installation](#installation)
 * [License](#license)
 * [Usage](#usage)
-* [Contributors](#contributors)
+* [Collaborators](#collaborators)
 * [Test](#test)
 * [Contributing](#contributing)
 * [Questions](#questions)
@@ -66,7 +66,7 @@ MIT
 I am a mobile groomer who needs to have a reliable way to keep up with appointments and send notifications to clients as well as have maps and notes on each dog I work on. I want to be able to display my appointments on one daily screen and automatically let my next client know when i am en route. I need an easy way to charge my clients and tally the days receipts. 
 
 ## Collaborators
-[deawar](https://api.github.com/users/deawar/repos)<br>[itsjonkelley](https://api.github.com/users/itsjonkelley/repos)<br>[ankmud01](https://api.github.com/users/ankmud01/repos)<br>[atmurray-fullstack](https://api.github.com/users/atmurray-fullstack/repos)
+[deawar](https://github.com/deawar)<br>[itsjonkelley](https://github.com/itsjonkelley)<br>[ankmud01](https://github.com/ankmud01)<br>[atmurray-fullstack](https://github.com/atmurray-fullstack)
 
 
 ## Test
@@ -97,7 +97,7 @@ This application will be used for helping small businesses find a better way to 
 
 <img src="https://avatars1.githubusercontent.com/u/15312495?s=400&u=ca57805f0913479f15a13ed8e5a1577eb95c0926&v=4" alt="ME" width="150" height="150"><br>
 If you have any questions about the repo contact deawar directly at deawar@gmail.com, ankmud01@gmail.com, Atmurray-FullStack or itsjonkelley. Thank you for your interest.<br>
-If you want to see more of my work please click here https://api.github.com/users/deawar/repos.
+If you want to see more of my work please click here https://github.com/deawar.
 
 ## Deployed BackEnd
 [InstaGroom.Me](https://www.instagroome.me) Hosted on Heroku with directions to download the InstaGroom-Client from the GooglePlay website.
