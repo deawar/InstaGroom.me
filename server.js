@@ -8,6 +8,7 @@ const CustomerRoutes = require('./routes/customerRoutes');
 const AuthRoutes = require('./routes/authRoutes');
 const GoogleApiRoutes = require('./routes/googleapiRoutes');
 const AppointmentRoutes = require('./routes/appointmentRoute');
+const BillingRoutes = require('./routes/billingRoute');
 
 // MongoDB cloud URL
 const { MONGODB_URI } = process.env;
@@ -48,6 +49,7 @@ app.use('/api', CustomerRoutes);
 app.use('/api', AuthRoutes);
 app.use('/api', GoogleApiRoutes);
 app.use('/api', AppointmentRoutes);
+app.use('/api', BillingRoutes);
 
 // Listening to PORT
 app.listen(PORT, () => {
