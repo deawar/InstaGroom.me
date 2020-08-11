@@ -49,7 +49,9 @@ router.post('/getDirection', async (req, res) => {
       distance: data.routes[0].legs[0].distance.text,
       duration: data.routes[0].legs[0].duration_in_traffic.text,
       myOrigin: data.routes[0].legs[0].start_address,
+      originCoords: data.routes[0].legs[0].start_location,
       myDestination: data.routes[0].legs[0].end_address,
+      destinationCoords: data.routes[0].legs[0].end_location,
       directionPoints: data.routes[0].overview_polyline.points,
     };
     return res.json({
