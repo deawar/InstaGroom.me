@@ -11,13 +11,14 @@ InstaGroom.Me
 Andrew Murray, Ankit Mudvari, Dean Warren, Jonathan Kelly
 ​
 ## Table of Contents
-=====================
+--------------------
 * [Installation](#installation)
 * [License](#license)
 * [Usage](#usage)
 * [Collaborators](#collaborators)
 * [Test](#test)
 * [Contributing](#contributing)
+* [Demo](#demo)
 * [Questions](#questions)
 ​
 ## Installation
@@ -91,11 +92,15 @@ Or if you prefer `nodemon` :<br>
 This application will be used for helping small businesses find a better way to conduct their daily business activites. So, please be respectful and mindful to others
 ​
 <br>
-<img src="https://www.instagroom.me" alt="Demo">
-​
+
+## Demo
+<img src="https://github.com/deawar/InstaGroom.me/blob/master/public/img/Instagroom.Me.gif?raw=true" alt="Demo">
+​<br>
+
 ## Questions
-​
-<img src="https://avatars1.githubusercontent.com/u/15312495?s=400&u=ca57805f0913479f15a13ed8e5a1577eb95c0926&v=4" alt="ME" width="150" height="150"><br>
+
+​<br>
+<img src="https://avatars1.githubusercontent.com/u/15312495?s=400&u=ca57805f0913479f15a13ed8e5a1577eb95c0926&v=4" alt="ME" width="120" height="120"><br>
 If you have any questions about the repo contact deawar directly at deawar@gmail.com, ankmud01@gmail.com, Atmurray-FullStack or itsjonkelley. Thank you for your interest.<br>
 If you want to see more of my work please click here https://github.com/deawar.
 ​
