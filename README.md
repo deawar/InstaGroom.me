@@ -15,7 +15,7 @@ Andrew Murray, Ankit Mudvari, Dean Warren, Jonathan Kelly
 * [Installation](#installation)
 * [License](#license)
 * [Usage](#usage)
-* [Contributors](#contributors)
+* [Collaborators](#collaborators)
 * [Test](#test)
 * [Contributing](#contributing)
 * [Questions](#questions)

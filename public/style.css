@@ -1,3 +1,8 @@
+html,body
+{
+    overflow-x: hidden; 
+}
+
 body {
     background-image: url('https://images.unsplash.com/photo-1516734212186-a967f81ad0d7?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1502&q=80');
     background-repeat: no-repeat;
@@ -42,4 +47,8 @@ li {
   }
   .scrolled-up{
      transform:translateY(0); transition: all 0.5s ease-in-out;
+  }
+
+  .container-md {
+      min-width: 400px;
   }
